@@ -15,7 +15,7 @@ public class ViewsRepositoryImpl implements ViewsRepository {
 	}
 
 	@Override
-	public View add(View view) {
+	public View save(View view) {
 		this.view.add( view );
 		return view;
 	}
