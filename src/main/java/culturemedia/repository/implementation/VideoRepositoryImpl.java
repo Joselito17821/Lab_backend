@@ -1,9 +1,9 @@
-package culturoteca.repository.impl;
+package culturemedia.repository.implementation;
 import java.util.ArrayList;
 import java.util.List;
 
-import culturoteca.model.Video;
-import culturoteca.repository.VideoRepository;
+import culturemedia.model.Video;
+import culturemedia.repository.VideoRepository;
 
 public class VideoRepositoryImpl implements VideoRepository {
 
@@ -14,18 +14,18 @@ public class VideoRepositoryImpl implements VideoRepository {
 	}
 
 	@Override
-	public List<Video> findAll() {
+	public List<Video> listAll() {
 		return videos;
 	}
 
 	@Override
-	public Video save(Video video) {
+	public Video add(Video video) {
 		this.videos.add( video );
 		return video;
 	}
 
 	@Override
-	public List<Video> find(String title) {
+	public List<Video> search(String title) {
 		List<Video> filteredVideos = null;
 		for ( Video video : videos ) {
 			if(title.equals( video.title() )){
@@ -39,7 +39,7 @@ public class VideoRepositoryImpl implements VideoRepository {
 	}
 
 	@Override
-	public List<Video> find(Double fromDuration, Double toDuration) {
+	public List<Video> search(Double fromDuration, Double toDuration) {
 		List<Video> filteredVideos = new ArrayList<Video>();
 		for ( Video video : videos ) {
 			if(video.duration()> fromDuration && video.duration()< toDuration){
