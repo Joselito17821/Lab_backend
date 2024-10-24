@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface VideoRepository {
     List<Video> listAll();
-    Video Add(Video video);
-    List<Video> Search(String title);
-    List<Video> Search(Double duration, Double durationUpTo);
+    Video add(Video video);
+    List<Video> search(String title);
+    List<Video> search(Double fromDuration, Double toDuration);
 }

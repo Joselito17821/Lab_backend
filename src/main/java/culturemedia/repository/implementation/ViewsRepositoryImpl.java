@@ -1,22 +1,22 @@
-package culturoteca.repository.impl;
+package culturemedia.repository.implementation;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import culturoteca.model.View;
-import culturoteca.repository.ViewsRepository;
+import culturemedia.model.View;
+import culturemedia.repository.ViewsRepository;
 
 public class ViewsRepositoryImpl implements ViewsRepository {
 
-	private final List<View> views;
+	private final List<View> view;
 
 	public ViewsRepositoryImpl() {
-		this.views = new ArrayList<>();
+		this.view = new ArrayList<>();
 	}
 
 	@Override
-	public View save(View view) {
-		this.views.add( view );
+	public View add(View view) {
+		this.view.add( view );
 		return view;
 	}
 }
