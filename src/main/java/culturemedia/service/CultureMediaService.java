@@ -6,7 +6,7 @@ import culturemedia.model.View;
 import java.util.List;
 
 public interface CultureMediaService {
-    List<Video> ListAll();
-    Video Add(Video video);
-    View Add(View view);
+    List<Video> findAll();
+    Video save(Video video);
+    View save(View view);
 }

@@ -1,11 +1,11 @@
 package culturemedia.exception;
 
-public class VideoNotFoundException extends CultureMediaException {
-
+public class VideoNotFoundException extends RuntimeException {
     public VideoNotFoundException() {
-        super("Video not found");
+        super("There are no videos");
     }
-    public VideoNotFoundException(String title) {
-        super("Video not found: " + title);
+    public VideoNotFoundException(String message) {
+        super(message);
     }
 }
+
