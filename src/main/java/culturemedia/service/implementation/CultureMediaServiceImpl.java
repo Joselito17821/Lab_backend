@@ -12,17 +12,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CultureMediaServiceImpl implements CultureMediaService {
-    private VideoRepository videoRepository;
-    private ViewsRepository viewsRepository;
+     VideoRepository videoRepository;
+     ViewsRepository viewsRepository;
 
-    private static List<Video> videos;
-
-    public CultureMediaServiceImpl() {
-        videos = new ArrayList<>();
+    public CultureMediaServiceImpl(VideoRepository videoRepository, ViewsRepository viewsRepository) {
+        this.videoRepository = videoRepository;
+        this.viewsRepository = viewsRepository;
     }
 
 
     public List<Video> findAll() {
+        List<Video> videos = this.videoRepository.findAll();
         if (videos.isEmpty()) {
             throw new VideoNotFoundException("There are no videos");
         }
@@ -30,39 +30,22 @@ public class CultureMediaServiceImpl implements CultureMediaService {
     }
 
     public Video save(Video video) {
-        videos.add(video);
+        videoRepository.save(video);
         return video;
     }
 
     public View save(View view) {
+        viewsRepository.save(view);
         return view;
     }
 
-    public static List<Video> find(String title) {
-        List<Video> filteredVideos = new ArrayList<>();
-        for (Video video : videos) {
-            if (video.title().contains(title)) {
-                filteredVideos.add(video);
-            }
-        }
-        if (filteredVideos.isEmpty()) {
-            throw new VideoNotFoundException("No videos found with title: " + title);
-        }
-        return filteredVideos;
+    public List<Video> find(String title) {
+        return this.videoRepository.find(title);
     }
 
 
-    public static List<Video> find(Double fromDuration, Double toDuration) {
-        List<Video> filteredVideos = new ArrayList<>();
-        for (Video video : videos) {
-            if (video.duration() >= fromDuration && video.duration() <= toDuration) {
-                filteredVideos.add(video);
-            }
-        }
-        if (filteredVideos.isEmpty()) {
-            throw new VideoNotFoundException("No videos found in the duration range: " + fromDuration + " - " + toDuration);
-        }
-        return filteredVideos;
+    public List<Video> find(Double fromDuration, Double toDuration) {
+        return this.videoRepository.find(fromDuration, toDuration);
     }
 
 
